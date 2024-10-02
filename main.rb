@@ -44,7 +44,7 @@ def runTests
     run_command("cd #{$repo_path} && #{yarn_or_npm} detox build-framework-cache --configuration #{$detox_configuration}")
 
     run_command("cd #{$repo_path} && #{yarn_or_npm} detox build --configuration #{$detox_configuration}")
-    run_command("cd #{$repo_path} && #{yarn_or_npm} detox test --configuration #{$detox_configuration}")
+    run_command("cd #{$repo_path} && #{yarn_or_npm} detox test --configuration #{$detox_configuration} --take-screenshots all")
     
     # copy test results to output directory for downloadable artifacts
     run_command("cp #{$repo_path}/test-reports/*-report.xml #{$output_path}")
