@@ -1,7 +1,7 @@
 platform: Common
 buildPlatform: ReactNative
-displayName: "React Native E2E Test"
-description: "Run React Native E2E Tests with Detox"
+displayName: "React Native UI Test"
+description: "Run React Native UI Tests with Detox"
 inputs:
   - key: "AC_REPOSITORY_DIR"
     defaultValue: "$AC_REPOSITORY_DIR"

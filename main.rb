@@ -48,6 +48,9 @@ def runTests
     
     # copy test results to output directory for downloadable artifacts
     run_command("cp #{$repo_path}/test-reports/*-report.xml #{$output_path}")
+
+    # copy e2e test reports to output directory for downloadable artifacts
+    run_command("cp -rp #{$repo_path}/artifacts/* #{$output_path}/test_attachments")
     
 
     # Write AC_TEST_RESULT_PATH reserved variable to the ENV file for test report component
