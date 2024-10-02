@@ -30,8 +30,7 @@ def run_command(command)
 end
 
 def runTests
-    run_command("brew tap wix/brew")
-    run_command("brew install applesimutils")
+    run_command("brew tap wix/brew && brew install applesimutils")
 
     yarn_or_npm = "npm"
     if File.file?("#{$repo_path}/yarn.lock")
