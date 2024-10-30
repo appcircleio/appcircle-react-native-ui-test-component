@@ -19,7 +19,7 @@ inputs:
     defaultValue: "$AC_RN_DETOX_CONFIGURATION"
     isRequired: true
     title: Detox Configuration Name
-    description: Specify the detox configuration name to used when building and running the tests.
+    description: Specify the Detox configuration name to used when building and running the tests.
     helpText:
 outputs:
   - key: "AC_TEST_RESULT_PATH"
