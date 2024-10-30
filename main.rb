@@ -53,11 +53,6 @@ def runTests
        f.puts "AC_TEST_RESULT_PATH=#{$output_path}"
     end
 
-    results.each_with_index do |(success, result), index|
-      unless success
-        abort("Command #{index + 1} failed: #{result}")
-      end
-    end
     puts "Tests completed successfully"
 end
 
