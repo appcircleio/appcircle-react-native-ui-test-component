@@ -1,8 +1,15 @@
 require 'open3'
 require 'os'
 
+def get_env_variable(key)
+  return (ENV[key] == nil || ENV[key] == "") ? nil : ENV[key]
+end
+
 def env_has_key(key)
-  !ENV[key].nil? && ENV[key] != '' ? ENV[key] : abort("Missing #{key}.")
+  value = get_env_variable(key)
+	return value unless value.nil? || value.empty?
+
+	abort("Input #{key} is missing.")
 end
 
 $output_path = env_has_key("AC_OUTPUT_DIR")
@@ -10,23 +17,16 @@ $repo_path = env_has_key("AC_REPOSITORY_DIR")
 $detox_configuration = env_has_key("AC_RN_DETOX_CONFIGURATION")
 
 def run_command(command)
-    puts "@@[command] #{command}"
-    stdout_str = nil
-    stderr_str = nil
-    status = nil
-  
-    Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-      stdout.each_line { |line| puts line }
-      stdout_str = stdout.read
-      stderr_str = stderr.read
-      status = wait_thr.value
-    end
-  
-    if status.success?
-      return true, stdout_str
-    else
-      return false, stderr_str
-    end
+  puts "@@[command] #{command}"
+  stdout_str, stderr_str, status = Open3.capture3(command)
+
+  if status.success?
+    puts stdout_str unless stdout_str.empty?
+    puts stderr_str unless stderr_str.empty?
+    return stderr_str.empty? ? stdout_str : stderr_str
+  else
+    return stderr_str
+  end
 end
 
 def runTests
