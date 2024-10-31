@@ -56,8 +56,8 @@ def runTests
 
     puts "Detox Configuration used is #{$detox_configuration}"
 
-    run_command("cd #{$repo_path} && #{yarn_or_npm} detox clean-framework-cache", true)
-    run_command("cd #{$repo_path} && #{yarn_or_npm} detox build-framework-cache --configuration #{$detox_configuration}", true)
+    run_command("cd #{$repo_path} && #{yarn_or_npm} detox clean-framework-cache", false)
+    run_command("cd #{$repo_path} && #{yarn_or_npm} detox build-framework-cache --configuration #{$detox_configuration}", false)
     run_command("cd #{$repo_path} && #{yarn_or_npm} detox build --configuration #{$detox_configuration}", false)
     test_command = "detox test --configuration #{$detox_configuration} #{$detox_params}"
 
