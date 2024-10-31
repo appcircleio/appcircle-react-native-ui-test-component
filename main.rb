@@ -61,7 +61,7 @@ def runTests
     run_command("cd #{$repo_path} && #{yarn_or_npm} #{test_command}", true)
     run_command("cp #{$repo_path}/test-reports/*-report.xml #{$output_path}", false)
     
-    attachment_dir = "#{$repo_path}/artifacts/*"
+    attachment_dir = "#{$repo_path}/artifacts"
 
     if File.directory?(attachment_dir)
       run_command("cp -rp #{attachment_dir} #{$output_path}/test_attachments", false)
