@@ -15,11 +15,8 @@ end
 $output_path = env_has_key("AC_OUTPUT_DIR")
 $repo_path = env_has_key("AC_REPOSITORY_DIR")
 $detox_configuration = env_has_key("AC_RN_DETOX_CONFIGURATION")
+$detox_params = get_env_variable("AC_RN_DETOX_ARGS")
 
-$ext_param = []
-if ENV["AC_RN_DETOX_ARGS"] != "" && ENV["AC_RN_DETOX_ARGS"] != nil
-  $ext_param = ENV["AC_RN_DETOX_ARGS"].split("|")
-end
 
 $exit_status_code = 0
 def run_command(command, skip_abort)
@@ -40,9 +37,9 @@ def run_command(command, skip_abort)
     unless status.success?
         puts stderr_str
         unless skip_abort
-            exit -1
+            exit 1
         end
-        $exit_status_code = -1
+        $exit_status_code = 1
     end
 end
 
@@ -62,16 +59,7 @@ def runTests
     run_command("cd #{$repo_path} && #{yarn_or_npm} detox clean-framework-cache", true)
     run_command("cd #{$repo_path} && #{yarn_or_npm} detox build-framework-cache --configuration #{$detox_configuration}", true)
     run_command("cd #{$repo_path} && #{yarn_or_npm} detox build --configuration #{$detox_configuration}", false)
-    test_command = "detox test --configuration #{$detox_configuration}"
-
-    if $ext_param.kind_of?(Array)
-      $ext_param.each do |option|
-        test_command.concat(" ")
-        test_command.concat(option)
-        test_command.concat(" ")
-      end
-    end
-
+    test_command = "detox test --configuration #{$detox_configuration} #{$detox_params}"
 
     run_command("cd #{$repo_path} && #{yarn_or_npm} #{test_command}", true)
     run_command("cp #{$repo_path}/test-reports/*-report.xml #{$output_path}", false)    
