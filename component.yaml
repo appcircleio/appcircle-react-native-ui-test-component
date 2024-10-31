@@ -1,7 +1,7 @@
 platform: Common
 buildPlatform: ReactNative
 displayName: "React Native UI Test"
-description: "Run React Native UI Tests with Detox"
+description: "Run React Native UI tests with Detox"
 inputs:
   - key: "AC_REPOSITORY_DIR"
     defaultValue: "$AC_REPOSITORY_DIR"
@@ -25,7 +25,7 @@ inputs:
     defaultValue: "--take-screenshots all"
     isRequired: false
     title: Detox Extra Arguments
-    description: Specify the Detox extra commands to add the test command. Appcircle uses the command `detox test --configuration<configname>` command to be able to run Detox tests. The commands written here will be executed by appending detox test --configuration<configname> to the end of the command.
+    description: Specify the Detox extra arguments to add the test command. The arguments will be executed by appending `detox build --configuration<configname>` to the end of the command. For more information, see the Detox test [CLI options](https://wix.github.io/Detox/docs/19.x/api/detox-cli/#test).
     helpText:
 outputs:
   - key: "AC_TEST_RESULT_PATH"

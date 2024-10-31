@@ -10,7 +10,7 @@ Run React Native UI tests with Detox.
 
 ## Optional Input Variables
 
-- `$AC_RN_DETOX_ARGS`: Specify the Detox extra commands to add the test command. Appcircle uses the command `detox build --configuration<configname>` command to be able to run Detox tests. The commands written here will be executed by appending detox build --configuration<configname> to the end of the command.
+- `$AC_RN_DETOX_ARGS`: Specify the Detox extra arguments to add the test command. The arguments will be executed by appending `detox test --configuration<configname>` to the end of the command. For more information, see the Detox test [CLI options](https://wix.github.io/Detox/docs/19.x/api/detox-cli/#test).
 
 ## Output Variables
 

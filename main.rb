@@ -8,7 +8,7 @@ end
 def env_has_key(key)
   value = get_env_variable(key)
 	return value unless value.nil? || value.empty?
-
+  
 	abort("Input #{key} is missing.")
 end
 
@@ -49,16 +49,13 @@ def runTests
       run_command("brew tap wix/brew && brew install applesimutils", false)
     end 
 
-    yarn_or_npm = "npm"
-    if File.file?("#{$repo_path}/yarn.lock")
-      yarn_or_npm = "yarn"
-    end
+    yarn_or_npm = File.file?("#{$repo_path}/yarn.lock") ? "yarn" : "npm"
 
     puts "Detox Configuration used is #{$detox_configuration}"
 
-    run_command("cd #{$repo_path} && #{yarn_or_npm} detox clean-framework-cache", false)
-    run_command("cd #{$repo_path} && #{yarn_or_npm} detox build-framework-cache --configuration #{$detox_configuration}", false)
-    run_command("cd #{$repo_path} && #{yarn_or_npm} detox build --configuration #{$detox_configuration}", false)
+    run_command("cd #{$repo_path} && #{yarn_or_npm} detox clean-framework-cache", true)
+    run_command("cd #{$repo_path} && #{yarn_or_npm} detox build-framework-cache --configuration #{$detox_configuration}", true)
+    run_command("cd #{$repo_path} && #{yarn_or_npm} detox build --configuration #{$detox_configuration}", true)
     test_command = "detox test --configuration #{$detox_configuration} #{$detox_params}"
 
     run_command("cd #{$repo_path} && #{yarn_or_npm} #{test_command}", true)
