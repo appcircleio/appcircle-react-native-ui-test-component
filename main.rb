@@ -59,8 +59,13 @@ def runTests
     test_command = "detox test --configuration #{$detox_configuration} #{$detox_params}"
 
     run_command("cd #{$repo_path} && #{yarn_or_npm} #{test_command}", true)
-    run_command("cp #{$repo_path}/test-reports/*-report.xml #{$output_path}", false)    
-    run_command("cp -rp #{$repo_path}/artifacts/* #{$output_path}/test_attachments", false)     
+    run_command("cp #{$repo_path}/test-reports/*-report.xml #{$output_path}", false)
+    
+    attachment_dir = "#{$repo_path}/artifacts/*"
+
+    if File.directory?(attachment_dir)
+      run_command("cp -rp #{attachment_dir} #{$output_path}/test_attachments", false)
+    end     
     
     File.open(ENV['AC_ENV_FILE_PATH'], 'a') do |f|
        f.puts "AC_TEST_RESULT_PATH=#{$output_path}"
