@@ -15,7 +15,7 @@ end
 $output_path = env_has_key("AC_OUTPUT_DIR")
 $repo_path = env_has_key("AC_REPOSITORY_DIR")
 $detox_configuration = env_has_key("AC_RN_DETOX_CONFIGURATION")
-$detox_params = get_env_variable("AC_RN_DETOX_ARGS")
+$detox_params = get_env_variable("AC_RN_DETOX_TEST_ARGS")
 
 
 $exit_status_code = 0

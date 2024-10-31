@@ -25,7 +25,7 @@ inputs:
     defaultValue: "--take-screenshots all"
     isRequired: false
     title: Detox Extra Arguments
-    description: Specify the Detox extra arguments to add the test command. The arguments will be executed by appending `detox build --configuration<configname>` to the end of the command. For more information, see the Detox test [CLI options](https://wix.github.io/Detox/docs/19.x/api/detox-cli/#test).
+    description: Specify the Detox extra arguments to add the test command. The arguments will be executed by appending `detox test --configuration<configname>` to the end of the command. For more information, see the Detox test [CLI options](https://wix.github.io/Detox/docs/19.x/api/detox-cli/#test).
     helpText:
 outputs:
   - key: "AC_TEST_RESULT_PATH"
