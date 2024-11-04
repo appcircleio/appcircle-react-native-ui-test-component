@@ -1,7 +1,7 @@
 platform: Common
 buildPlatform: ReactNative
 displayName: "React Native UI Test"
-description: "Run React Native UI tests with Detox"
+description: "Run React Native UI tests with Detox."
 inputs:
   - key: "AC_REPOSITORY_DIR"
     defaultValue: "$AC_REPOSITORY_DIR"
@@ -12,7 +12,7 @@ inputs:
   - key: "AC_OUTPUT_DIR"
     defaultValue: "$AC_OUTPUT_DIR"
     isRequired: true
-    title: Output Direction
+    title: Output Directory Path
     description: Specify the output directory.
     helpText:
   - key: "AC_RN_DETOX_CONFIGURATION"

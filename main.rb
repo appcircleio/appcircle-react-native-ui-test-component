@@ -1,5 +1,6 @@
 require 'open3'
 require 'os'
+require 'colored'
 
 def get_env_variable(key)
   return (ENV[key] == nil || ENV[key] == "") ? nil : ENV[key]
@@ -71,7 +72,7 @@ def runTests
        f.puts "AC_TEST_RESULT_PATH=#{$output_path}"
     end
 
-    puts "Tests completed successfully"
+    puts 'Tests completed successfully.'.green
 end
 
 runTests()
