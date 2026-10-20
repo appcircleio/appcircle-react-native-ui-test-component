@@ -47,10 +47,16 @@ end
 def runTests
 
     if OS.mac?
-      run_command("brew tap wix/brew && brew install applesimutils", false)
+      # The runner image can ship applesimutils; the wix/brew tap needs internet access, so use it only when it is missing
+      if system("command -v applesimutils > /dev/null 2>&1")
+        puts "applesimutils is already installed, skipping the Homebrew installation."
+      else
+        run_command("brew tap wix/brew && brew install applesimutils", false)
+      end
     end 
 
-    yarn_or_npm = File.file?("#{$repo_path}/yarn.lock") ? "yarn" : "npm"
+    # npm has no "detox" command; npx runs the project's local Detox CLI
+    yarn_or_npm = File.file?("#{$repo_path}/yarn.lock") ? "yarn" : "npx"
 
     puts "Detox Configuration used is #{$detox_configuration}"
 
